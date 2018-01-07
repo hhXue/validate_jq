@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>数据校验</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  
+  </head>
+  <body>
+  <form>
+  	姓名：<input type="text" name="" 
+  			data-dr-requied=true
+  			data-dr-requied-message='姓名不能为空'
+  	  >
+  	手机号码：<input type="text" name="" 
+  			data-dr-required=ture
+            data-dr-required-message="手机号码输入不能为空"
+  			data-dr-regexp='^1\d{10}$'
+  			data-dr-regexp-message='手机号码输入不合法'
+  	  >
+    密码：<input type="password" name=""
+    		data-dr-requied=true
+  			data-dr-requied-message='密码不能为空'
+    		data-dr-regexp='^\w+$'
+  			data-dr-regexp-message='密码不合法(由字母数字下划线组成)'
+  			 data-dr-max-length=16
+              data-dr-max-length-message="密码不能大于16个字符"
+    >
+    确认密码：<input type="password" name=""
+    		data-dr-requied=true
+  			data-dr-requied-message='不能为空'
+    		data-dr-confirm=true
+         	data-dr-confirm-message="两次密码输入不一致"
+    >
+    邮箱：<input type="text" name=""
+    		data-dr-regexp='^\w+@\w+\.\w+$'
+  			data-dr-regexp-message='邮箱输入不合法'
+  			data-dr-required=true
+            data-dr-required-message="邮箱输入不能为空"
+    >
+ <button type="submit" class="btn btn-default">注册</button>
+  </form>
+    
+  </body>
+  <script type="text/javascript" src="jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="validate.js"></script>
+  <script type="text/javascript">
+  	$('form').dataValidate()
+
+  	 //如何扩展
+      jQuery.prototype.dataValidate.extendResult({
+      	     "max-length":function(data){   //值
+                   return this.val().length<=data;  //false
+      	     }
+      });
+
+      function Parent(){
+      	this.name='parent';
+      	this.say = 'test';
+      	this.arr=[1,2,3]
+      }
+      function Child(){
+      	this.name='child'
+      }
+      Child.prototype = Parent.prototype;
+      console.log(new Child)
+      var a = new Child;
+      var b = new Child;
+      console.log(a.say,b.say)
+      a.say='newtest';
+      a.arr.push(4)
+  </script>
+</html>
