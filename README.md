@@ -1,1 +1,1 @@
-# validate_jq
+# 以jQuery为基础的数据校验插件，可扩展
